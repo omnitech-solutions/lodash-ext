@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.4 (2023-03-08)
+
 ### [1.0.3](https://github.com/x-cold/rollup-ts-library-boilerplate/compare/v1.0.2...v1.0.3) (2021-12-18)
 
 ### [1.0.2](https://github.com/x-cold/rollup-ts-library-boilerplate/compare/v1.0.1...v1.0.2) (2021-12-18)
@@ -13,7 +15,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * add utils example ([c2f766d](https://github.com/x-cold/rollup-ts-library-boilerplate/commit/c2f766dbd77c05c8e7dba63401a6d0de7dc2dee8))
 * deploy docs to github pages ([f2505d0](https://github.com/x-cold/rollup-ts-library-boilerplate/commit/f2505d0e53973437831cc6c177bfdbcb3cd10e2b))
-* eslint supports react ([1f2ac03](https://github.com/x-cold/rollup-ts-library-boilerplate/commit/1f2ac030bb88a75eedab16733781e4b5a1f8c659))
 * support github actioin: unit test ([ee885bb](https://github.com/x-cold/rollup-ts-library-boilerplate/commit/ee885bbe57b755be697ed1e0d3e453827fd26176))
 
 
