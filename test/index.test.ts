@@ -1,19 +1,11 @@
-import mylib from '../src';
-import { getTime } from '../src/utils';
+import {isBlank, isPresent, stripNonNumericCharacters, toBoolean, toNumber} from '../src/index'
 
-/**
- * Dummy test
- */
-describe('Dummy test', () => {
-  it('works if true is truthy', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('mylib is instantiable', () => {
-    expect(mylib).toBeInstanceOf(Object);
-  });
-
-  it('mylib is instantiable', () => {
-    expect(typeof getTime()).toEqual('number');
-  });
+describe('exports', function () {
+    describe('lang functions', function () {
+        [isBlank, isPresent, stripNonNumericCharacters, toBoolean, toNumber].forEach((func) => {
+            it(`${func.name} returns a function`, () => {
+                expect(typeof func).toEqual('function')
+            })
+        })
+    });
 });
