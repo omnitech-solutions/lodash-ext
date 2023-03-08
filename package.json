@@ -1,6 +1,6 @@
 {
   "name": "@omnitech/lodash-ext",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "A library template writing by ts",
   "main": "dist/index.umd.js",
   "module": "dist/index.es5.js",
