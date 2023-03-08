@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/omnitech-solutions/lodash-ext/compare/v1.0.4...v0.0.2) (2023-03-08)
+
 ### 1.0.4 (2023-03-08)
 
 ### [1.0.3](https://github.com/x-cold/rollup-ts-library-boilerplate/compare/v1.0.2...v1.0.3) (2021-12-18)
