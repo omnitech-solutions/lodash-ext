@@ -138,3 +138,38 @@ toNumber({}) // => NaN
 toNumber([]) // => 0
 ```
 
+### "String" Methods
+
+#### capitalize
+
+> Capitalizes first character of string
+
+```ts
+capitalize('abc def') // => 'Abc def'
+```
+
+#### replaceAll
+
+> Allows for multiple replacements for given value
+
+```ts
+replaceAll('{{attribute}}', [[/{{/, ':'], [/}}/, '']]) // => ':attribute'
+```
+
+#### titleize
+
+> Capitalizes all the words apart from the likes of an
+
+```ts
+titleize('something to say') // => 'Something to Say'
+```
+
+#### trim
+
+> Trim spaces around string or array of strings
+
+```ts
+trim('   ') // => ''
+trim(' abc  ') // => 'abc'
+trim(['', '   ', 'abc']) // => ['', '', 'abc']
+```

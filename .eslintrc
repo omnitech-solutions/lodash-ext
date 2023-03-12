@@ -1,9 +1,15 @@
 {
+  "parser": "@typescript-eslint/parser",
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:eslint-plugin/recommended",
     "airbnb",
-    "airbnb-typescript"
+    "airbnb-typescript",
+    "prettier"
   ],
   "plugins": [
+    "@typescript-eslint",
     "react"
   ],
   "overrides": [
@@ -13,13 +19,13 @@
         "*.tsx"
       ], // Your TypeScript files extension
       "parserOptions": {
-        "project": [
-          "./tsconfig.json"
-        ] // Specify it only for TypeScript files
+        "project": "./tsconfig.json"
       }
     }
   ],
   "rules": {
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "max-classes-per-file": [
       "off",
       1
