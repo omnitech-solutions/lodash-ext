@@ -52,6 +52,25 @@ By default, there are two disabled git hooks. They're set up when you run the `n
 
 ## Usage
 
+### "Array" Methods
+
+#### omit
+
+> removes matching values from array
+
+```ts
+omit([1, 2, 3, 4], [2, 4]) // => [1, 3]
+```
+
+#### omitIndex
+
+> removes value at given index
+
+```ts
+omitIndex([1, 2, 3, 4], 2) // => [1, 2, 4]
+```
+
+
 ### "Lang" Methods
 
 #### isBlank

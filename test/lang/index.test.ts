@@ -1,5 +1,6 @@
 import {
-  deepEquals,
+  isDeepEquals,
+  isDeepDifferent,
   isBlank,
   isEmail,
   isPresent,
@@ -14,7 +15,8 @@ import {
 
 describe('exports', () => {
   [
-    deepEquals,
+    isDeepEquals,
+    isDeepDifferent,
     isBlank,
     isEmail,
     isPresent,

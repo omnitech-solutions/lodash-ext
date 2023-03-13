@@ -1,5 +1,6 @@
-export { default as deepEquals } from './isDeepEquals';
 export { default as isBlank } from './isBlank';
+export { default as isDeepDifferent } from './isDeepDifferent';
+export { default as isDeepEquals } from './isDeepEquals';
 export { default as isEmail } from './isEmail';
 export { default as isPresent } from './isPresent';
 export { default as isUrl } from './isUrl';
