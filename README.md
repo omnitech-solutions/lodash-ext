@@ -54,6 +54,22 @@ By default, there are two disabled git hooks. They're set up when you run the `n
 
 ### "Lang" Methods
 
+#### deepEquals
+
+> Does a deep comparison between two values
+
+```ts
+const a = [{ one: { car: 1, vehicle: { truck: 3 } }, two: 2 }];
+
+const b = cloneDeep(a);
+
+deepEquals(a, b) // => true
+
+a[0].one.vehicle = 4
+deepEquals(a, b) // => false
+
+```
+
 #### isBlank
 
 > Checks if value is classified as a boolean primitive or object. handles more scenarios
@@ -71,6 +87,18 @@ isBlank({a: 1}) // => false
 isBlank(1) // => false
 ```
 
+#### isEmail
+
+> returns true if value is a valid email format
+
+```ts
+isEmail('email@domain.com') // => true
+isEmail('email@d.ca') // => true
+
+isEmail('not-an-email') // => false
+isEmail('email@domain.c') // => false
+```
+
 #### isPresent
 
 > Direct opposite of `isBlank`
@@ -86,6 +114,68 @@ isPresent('1') // => true
 isPresent('1') // => true
 isPresent({a: 1}) // => true
 isPresent(1) // => true
+```
+
+#### isUrl
+
+> returns true if value is a valid url
+
+```ts
+isUrl('http://a.b.ca') // => true
+isUrl('https://a.b.ca') // => true
+
+isUrl('https://a.b.c') // => false
+isUrl('www.google.ca') // => false
+
+```
+
+#### pickIfHasPaths
+
+> returns picked object if at least one path is found in given obj
+
+```ts
+pickIfHasPaths({ a: 1, b: 2 }, ['a']) // => { a: 1 }
+pickIfHasPaths({ a: 1, b: 2 }, ['c']) // => { a: 1, b: 2 } # original obj
+pickIfHasPaths({ a: 1, b: 2 }, []) // => { a: 1, b: 2 } # original obj
+```
+
+#### toEnum
+
+> Supports filling complex arrays
+
+```ts
+toEnum({ rowCount: 3 }) // => [0, 1, 2]
+toEnum(
+  {
+    rowCount: 3,
+    callback: (rowIndex) => ({ rowIndex })
+  }
+) // => [{ rowIndex: 0 }, { rowIndex: 1 }, { rowIndex: 2 }]
+toEnum(
+  // @ts-ignore
+  { rowCount: 3, columnCount: 2 }
+) // => [[[0, 0, 0], [0, 1, 1]],[[1, 0, 2],[1, 1, 3]],[[2, 0, 4],[2, 1, 5]]]
+
+// supports returning empty arrays via `emptyColumn` option
+toEnum(
+  // @ts-ignore
+  { rowCount: 3, columnCount: 2, emptyColumn: true } 
+) // => [[[], []],[[], []],[[], []]]
+```
+
+#### toMatrix
+
+> Supports filling two-dimensional arrays
+
+```ts
+toMatrix(3, 2) // => [[[0, 0, 0],[0, 1, 1]],[[1, 0, 2],[1, 1, 3]],[[2, 0, 4],[2, 1, 5]]]
+
+// supports functions
+toMatrix(1, 4, ({ rowIndex, columnIndex, index }) => ({
+  rowIndex,
+  columnIndex,
+  index
+})) // => [{ rowIndex: 0, columnIndex: 0, index: 0 },{ rowIndex: 0, columnIndex: 1, index: 1 },{ rowIndex: 0, columnIndex: 2, index: 2 },{ rowIndex: 0, columnIndex: 3, index: 3 }]
 ```
 
 #### stripNonNumericCharacters
@@ -172,4 +262,62 @@ titleize('something to say') // => 'Something to Say'
 trim('   ') // => ''
 trim(' abc  ') // => 'abc'
 trim(['', '   ', 'abc']) // => ['', '', 'abc']
+```
+
+### "Object" Methods
+
+#### dot
+
+> flattens given object into dot notation keys
+
+```ts
+const input = { a: { b: { c: 1 } } };
+dot(input) // => { 'a.b.c': 1 }
+dot(input, {separator: '_'}) // => { a_b_c: 1 }
+```
+
+#### dottedKeys
+
+> returns list of flattened dotted keys for given object
+
+```ts
+const input = { addresses: [{ city: 1 }] };
+
+dottedKeys(input) // => ['addresses.0.city']
+dottedKeys(input, {separator: '_'}) // => ['addresses_0_city']
+
+// with brackets around array indexes
+dottedKeys(input, { useBrackets: true }) // => ['addresses[0].city']
+dottedKeys(input, {separator: '_', useBrackets: true}) // => ['addresses[0]_city']
+```
+
+#### dottedOmit
+
+> returns object without matching keys to omit
+
+```ts
+const input = {a: 1, b: 2, d: {f: 3, g: 2}};
+
+dottedOmit(input, ['b', 'd.f']) // => {"a": 1,"d": {"g": 2}}
+dottedOmit(input, ['d']) // => {"a": 1, "b": 2}}
+```
+
+#### matchesSearchPaths
+
+> returns true if dotted key path matches one of given paths
+
+```ts
+matchesSearchPaths('a', ['a']) // => true 
+matchesSearchPaths('a.ba', ['a']) // => true 
+
+matchesSearchPaths('aa', ['a']) // => false 
+```
+
+#### undot
+
+> hydrates dotted object
+
+```ts
+undot({ 'a.b.c': 1 }) // => { a: { b: { c: 1 } } }
+undot({ a_b_c: 1 }, {separator: '_'}) // => { a: { b: { c: 1 } } }
 ```

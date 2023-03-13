@@ -1,8 +1,4 @@
-const isNil = require('lodash/isNil');
-const isString = require('lodash/isString');
-const isEmpty = require('lodash/isEmpty');
-const isNumber = require('lodash/isNumber');
-const isObject = require('lodash/isObject');
+import { isNil, isString, isEmpty, isNumber, isObject } from 'lodash';
 
 const isBlank = (arg: string | null | number | object) => {
   if (isNil(arg)) return true;

@@ -1,6 +1,4 @@
-const isNil = require('lodash/isNil');
-const isBoolean = require('lodash/isBoolean');
-const isString = require('lodash/isString');
+import { isNil, isBoolean, isString } from 'lodash';
 
 const toBoolean = (bool: boolean | string | null) => {
   const truthyValues = ['1', 'yes', 'true'];

@@ -1,5 +1,11 @@
+export { default as deepEquals } from './deepEquals';
 export { default as isBlank } from './isBlank';
+export { default as isEmail } from './isEmail';
 export { default as isPresent } from './isPresent';
+export { default as isUrl } from './isUrl';
+export { default as pickIfHasPaths } from './pickIfHasPaths';
 export { default as stripNonNumericCharacters } from './stripNonNumericCharacters';
 export { default as toBoolean } from './toBoolean';
+export { default as toEnum } from './toEnum';
+export { default as toMatrix } from './toMatrix';
 export { default as toNumber } from './toNumber';

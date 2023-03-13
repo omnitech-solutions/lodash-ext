@@ -1,4 +1,4 @@
-const isString = require('lodash/isString');
+import { isString } from 'lodash';
 
 const stripNonNumericCharacters = (value: string) => {
   if (!isString(value)) return value;

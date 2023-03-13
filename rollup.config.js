@@ -6,18 +6,20 @@ import json from 'rollup-plugin-json';
 import { babel } from '@rollup/plugin-babel';
 import pkg from './package.json';
 
+import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+
 const libraryName = 'index';
 
 export default {
   input: `src/${libraryName}.ts`,
   output: [
     { file: pkg.main, name: libraryName, format: 'umd', sourcemap: true },
-    { file: pkg.module, format: 'es', sourcemap: true },
+    { file: pkg.module, format: 'es', sourcemap: true }
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [],
   watch: {
-    include: 'src/**',
+    include: 'src/**'
   },
   plugins: [
     // Allow json resolution
@@ -25,15 +27,12 @@ export default {
     // Compile TypeScript files
     typescript({
       tsconfigOverride: {
-        include: [
-          'src/'
-        ],
-        exclude: [
-          'test/'
-        ]
+        include: ['src/'],
+        exclude: ['test/']
       },
       useTsconfigDeclarationDir: true
     }),
+    optimizeLodashImports(),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     babel({ babelHelpers: 'bundled' }),
@@ -43,6 +42,6 @@ export default {
     resolve(),
 
     // Resolve source maps to the original source
-    sourceMaps(),
-  ],
+    sourceMaps()
+  ]
 };
