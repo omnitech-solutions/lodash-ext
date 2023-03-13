@@ -1,4 +1,4 @@
-import { rejectObject, deepKeys, compactObject, mapObject, filterObject } from '../../src/utils/objelity';
+import { rejectObject, deepKeys, compactObject, mapObject, filterObject } from '../../src/common/objelity';
 
 describe('objelity', () => {
   it('deepKeys', () => {

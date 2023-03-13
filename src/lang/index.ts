@@ -1,4 +1,4 @@
-export { default as deepEquals } from './deepEquals';
+export { default as deepEquals } from './isDeepEquals';
 export { default as isBlank } from './isBlank';
 export { default as isEmail } from './isEmail';
 export { default as isPresent } from './isPresent';

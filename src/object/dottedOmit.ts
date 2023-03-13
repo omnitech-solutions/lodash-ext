@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash';
 import dottedKeys from './dottedKeys';
 import matchesSearchPaths from './matchesSearchPaths';
-import { rejectObject } from '../utils/objelity';
+import { rejectObject } from '../common/objelity';
 import dot from './dot';
 
 const dottedOmit = (obj: object, keys: Array<string>) => {

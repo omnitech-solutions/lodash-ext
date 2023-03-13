@@ -54,22 +54,6 @@ By default, there are two disabled git hooks. They're set up when you run the `n
 
 ### "Lang" Methods
 
-#### deepEquals
-
-> Does a deep comparison between two values
-
-```ts
-const a = [{ one: { car: 1, vehicle: { truck: 3 } }, two: 2 }];
-
-const b = cloneDeep(a);
-
-deepEquals(a, b) // => true
-
-a[0].one.vehicle = 4
-deepEquals(a, b) // => false
-
-```
-
 #### isBlank
 
 > Checks if value is classified as a boolean primitive or object. handles more scenarios
@@ -85,6 +69,34 @@ isBlank('1') // => false
 isBlank('1') // => false
 isBlank({a: 1}) // => false
 isBlank(1) // => false
+```
+
+#### isDeepEquals
+
+> Performs a deep comparison between two values and returns true if they are identical
+
+```ts
+const a = [{ one: { car: 1, vehicle: { truck: 3 } }, two: 2 }];
+const b = cloneDeep(a);
+
+isDeepEquals(a, b) // => true
+
+a[0].one.vehicle = 4
+isDeepEquals(a, b) // => false
+```
+
+#### isDeepDifferent
+
+> Performs a deep comparison between two values and returns true if they are different
+
+```ts
+const a = [{ one: { car: 1, vehicle: { truck: 3 } }, two: 2 }];
+const b = cloneDeep(a);
+
+isDeepDifferent(a, b) // => false
+
+a[0].one.vehicle = 4
+isDeepDifferent(a, b) // => true
 ```
 
 #### isEmail
@@ -266,6 +278,36 @@ trim(['', '   ', 'abc']) // => ['', '', 'abc']
 
 ### "Object" Methods
 
+#### deepDiff
+
+> returns deep differences between two objects 
+
+```ts
+const input = { one: 1, two: 2 };
+deepDiff(input, input) // => {}
+
+deepDiff({...input, two: 4}, input) // => { two: 2 }
+deepDiff(input, {...input, two: 4}) // => { two: 4 }
+
+deepDiff({...input, vehicle: { truck: 4}}, b) // => {}
+deepDiff(a, {...input, vehicle: { truck: 4}}) // => { vehicle: { truck: 4 } }
+```
+
+#### deepDiffWithDetails.ts
+
+> returns deep detailed differences between two objects 
+
+```ts
+const input = { one: 1, two: 2 };
+deepDiffWithDetails(input, input) // => { added: {}, deleted: {}, updated: {} }
+
+deepDiffWithDetails({...input, two: 4}, input) // => { added: {}, deleted: {}, updated: { two: 2 } }
+deepDiffWithDetails(input, {...input, two: 4})  // => { added: {}, deleted: {}, updated: { two: 4 }  }
+
+deepDiffWithDetails({...input, vehicle: { truck: 4}}, b) // => { added: {}, deleted: {}, updated: {} }
+deepDiffWithDetails(a, {...input, vehicle: { truck: 4}}) // => { added: { vehicle: { truck: 4 } }, deleted: {}, updated: {} }
+```
+
 #### dot
 
 > flattens given object into dot notation keys
@@ -300,6 +342,17 @@ const input = {a: 1, b: 2, d: {f: 3, g: 2}};
 
 dottedOmit(input, ['b', 'd.f']) // => {"a": 1,"d": {"g": 2}}
 dottedOmit(input, ['d']) // => {"a": 1, "b": 2}}
+```
+
+#### dottedPick
+
+> returns object consisting of matching dotted paths
+
+```ts
+const input = {a: 1, b: 2, d: {f: 3, g: 2}};
+
+dottedPick(input, ['b', 'd.f']) // => { b: 2, d: { f: 3 } }
+dottedPick(input, ['d']) // => { d: { f: 3 } }
 ```
 
 #### matchesSearchPaths
