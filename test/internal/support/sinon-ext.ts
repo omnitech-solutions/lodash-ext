@@ -5,10 +5,14 @@ import sinon from 'sinon';
 const throwIfFnNotStubbed = (stub: any, method: string) => {
   const sig = `.${method}(...)`;
 
+  const stringifyFunc = JSON.stringify;
+
   stub.callsFake((...args: any[]): any => {
+    // @ts-ignore
+    const stringifyArgs = args.map(stringifyFunc);
     const err = new Error(`${sig} was called without being stubbed.
       ${sig} was called with arguments:
-      ${args.map(JSON.stringify).join(', ')}
+      ${stringifyArgs.join(', ')}
     `);
 
     err.stack = chain(err.stack)
@@ -22,9 +26,12 @@ const throwIfFnNotStubbed = (stub: any, method: string) => {
 };
 
 const $stub = sinon.stub;
+
+/* @ts-ignore */
 // eslint-disable-next-line func-names
 sinon.stub = function (obj: any, method: string) {
-  /* eslint-disable prefer-rest-params */
+  /* @ts-ignore */
+  // eslint-disable-next-line prefer-rest-params
   const stub = $stub.apply(this, arguments);
 
   let fns = [method];
@@ -65,6 +72,7 @@ const createChainableStub = (methodNames: Array<string>) => {
     {}
   );
 
+  // @ts-ignore
   methodNames.forEach((method) => sinon.stub(obj, method).returns(obj));
 
   return obj;

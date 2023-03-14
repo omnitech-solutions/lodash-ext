@@ -1,9 +1,16 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: 'ts-jest',
-  globals: { 'ts-jest': { diagnostics: false } },
   testEnvironment: 'node',
-  transform: { '^.+\\.ts?$': 'ts-jest' },
+  transform: {
+    '^.+\\.ts?$': [
+      'ts-jest',
+      {
+        diagnostics: {
+          ignoreCodes: [2345, 2322]
+        }
+      }
+    ]
+  },
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '.*\\.(css|less|styl|scss|sass)$': '<rootDir>/test/internals/mocks/cssModule.ts',
