@@ -13,3 +13,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.0.4] (2023-03-13)
 - Implemented `number` related functionality
+
+### [0.0.5] (2023-03-13)
+- Reconfigured tests to use chai expects instead of jest
