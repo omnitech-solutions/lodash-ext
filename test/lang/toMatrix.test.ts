@@ -1,9 +1,11 @@
+import { expect } from 'chai';
+
 import toMatrix from '../../src/lang/toMatrix';
 
 describe('toMatrix', () => {
   describe('without callback', () => {
     it('returns two dimensional array filled with inner and outer index values', () => {
-      expect(toMatrix(3, 2)).toEqual([
+      expect(toMatrix(3, 2)).to.eql([
         [
           [0, 0, 0],
           [0, 1, 1]
@@ -29,7 +31,7 @@ describe('toMatrix', () => {
         index
       }));
 
-      expect(matrix).toEqual([
+      expect(matrix).to.eql([
         [
           { rowIndex: 0, columnIndex: 0, index: 0 },
           { rowIndex: 0, columnIndex: 1, index: 1 },

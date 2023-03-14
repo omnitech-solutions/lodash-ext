@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import { clone, set } from 'lodash';
 import deepDiff from '../../src/object/deepDiff';
 
@@ -7,15 +9,15 @@ describe('deepDiff', () => {
     const b = clone(a);
 
     it('returns empty object when the same', () => {
-      expect(deepDiff(a, b)).toEqual({});
-      expect(deepDiff(b, a)).toEqual({});
+      expect(deepDiff(a, b)).to.eql({});
+      expect(deepDiff(b, a)).to.eql({});
     });
 
     it('returns differences when objects have differences', () => {
       set(a, 'two', 4);
 
-      expect(deepDiff(a, b)).toEqual({ two: 2 });
-      expect(deepDiff(b, a)).toEqual({ two: 4 });
+      expect(deepDiff(a, b)).to.eql({ two: 2 });
+      expect(deepDiff(b, a)).to.eql({ two: 4 });
     });
   });
 
@@ -24,15 +26,15 @@ describe('deepDiff', () => {
     const b = clone(a);
 
     it('returns empty object when the same', () => {
-      expect(deepDiff(a, b)).toEqual({});
-      expect(deepDiff(b, a)).toEqual({});
+      expect(deepDiff(a, b)).to.eql({});
+      expect(deepDiff(b, a)).to.eql({});
     });
 
     it('returns differences when objects have differences', () => {
       set(a, 'vehicle.truck', 4);
 
-      expect(deepDiff({ ...a, vehicle: { truck: 4 } }, b)).toEqual({});
-      expect(deepDiff(b, { ...a, vehicle: { truck: 4 } })).toEqual({
+      expect(deepDiff({ ...a, vehicle: { truck: 4 } }, b)).to.eql({ vehicle: undefined });
+      expect(deepDiff(b, { ...a, vehicle: { truck: 4 } })).to.eql({
         vehicle: {
           truck: 4
         }

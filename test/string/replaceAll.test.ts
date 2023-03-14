@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import replaceAll from '../../src/string/replaceAll';
 
 describe('replaceAll', () => {
@@ -12,7 +14,7 @@ describe('replaceAll', () => {
           [/}}/, '']
         ]
       })
-    ).toEqual(':attribute');
+    ).to.eql(':attribute');
   });
 
   it('does not mutate value', () => {
@@ -27,6 +29,6 @@ describe('replaceAll', () => {
       ]
     });
 
-    expect(value).toEqual('{{attribute}}');
+    expect(value).to.eql('{{attribute}}');
   });
 });

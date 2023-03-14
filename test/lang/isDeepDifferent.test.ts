@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { cloneDeep, set } from 'lodash';
 import isDeepDifferent from '../../src/lang/isDeepDifferent';
 
@@ -8,13 +9,13 @@ describe('isDeepDifferent', () => {
       const b = cloneDeep(a);
 
       it('returns false when the same', () => {
-        expect(isDeepDifferent(a, b)).toBeFalsy();
+        expect(isDeepDifferent(a, b)).to.be.false;
       });
 
       it('returns true when objects have differences', () => {
         set(a, 'two', 4);
 
-        expect(isDeepDifferent(a, b)).toBeTruthy();
+        expect(isDeepDifferent(a, b)).to.be.true;
       });
     });
 
@@ -23,13 +24,13 @@ describe('isDeepDifferent', () => {
       const b = cloneDeep(a);
 
       it('returns false when the same', () => {
-        expect(isDeepDifferent(a, b)).toBeFalsy();
+        expect(isDeepDifferent(a, b)).to.be.false;
       });
 
       it('returns true when objects have deep differences', () => {
         set(a, 'vehicle.truck', 4);
 
-        expect(isDeepDifferent(a, b)).toBeTruthy();
+        expect(isDeepDifferent(a, b)).to.be.true;
       });
     });
 
@@ -38,13 +39,13 @@ describe('isDeepDifferent', () => {
       const b = cloneDeep(a);
 
       it('returns false when the same', () => {
-        expect(isDeepDifferent(a, b)).toBeFalsy();
+        expect(isDeepDifferent(a, b)).to.be.false;
       });
 
       it('returns true when objects have deep differences', () => {
         set(a, '0.one.vehicle.truck', 4);
 
-        expect(isDeepDifferent(a, b)).toBeTruthy();
+        expect(isDeepDifferent(a, b)).to.be.true;
       });
     });
 
@@ -53,11 +54,11 @@ describe('isDeepDifferent', () => {
       const b = { a: 1, b: 1, c: 3 };
 
       it('returns false when the same', () => {
-        expect(isDeepDifferent(a, b, { keysToPick: ['c'] })).toBeFalsy();
+        expect(isDeepDifferent(a, b, { keysToPick: ['c'] })).to.be.false;
       });
 
       it('returns true when objects have deep differences', () => {
-        expect(isDeepDifferent(a, b, { keysToPick: [] })).toBeTruthy();
+        expect(isDeepDifferent(a, b, { keysToPick: [] })).to.be.true;
       });
     });
   });

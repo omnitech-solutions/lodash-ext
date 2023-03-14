@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import dottedKeys from '../../src/object/dottedKeys';
 
 describe('dottedKeys', () => {
@@ -11,7 +13,7 @@ describe('dottedKeys', () => {
 
       const actual = dottedKeys(input, { separator: '_' });
 
-      expect(actual).toEqual(expected);
+      expect(actual).to.eql(expected);
     });
   });
 
@@ -24,7 +26,7 @@ describe('dottedKeys', () => {
 
     const actual = dottedKeys(input);
 
-    expect(actual).toEqual(expected);
+    expect(actual).to.eql(expected);
   });
 
   describe('with useBrackets option set', () => {
@@ -37,7 +39,7 @@ describe('dottedKeys', () => {
 
       const actual = dottedKeys(input, { useBrackets: true });
 
-      expect(actual).toEqual(expected);
+      expect(actual).to.eql(expected);
     });
   });
 
@@ -50,7 +52,7 @@ describe('dottedKeys', () => {
 
     const actual = dottedKeys(input, { ignoreArrayIndexKeys: true });
 
-    expect(actual).toEqual(expected);
+    expect(actual).to.eql(expected);
   });
 
   it('converts multiple elements', () => {
@@ -62,7 +64,7 @@ describe('dottedKeys', () => {
 
     const actual = dottedKeys(input);
 
-    expect(actual).toEqual(expected);
+    expect(actual).to.eql(expected);
   });
 
   it('should return dotted keys from object', () => {
@@ -79,7 +81,7 @@ describe('dottedKeys', () => {
 
     const actual = dottedKeys(transaction);
 
-    expect(actual).toEqual([
+    expect(actual).to.eql([
       'transaction.id',
       'transaction.transaction_entries.0.ledger_account_number',
       'transaction.transaction_entries.0.amount',

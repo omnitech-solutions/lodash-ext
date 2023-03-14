@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import { rejectObject, deepKeys, compactObject, mapObject, filterObject } from '../../src/common/objelity';
 
 describe('objelity', () => {
@@ -17,7 +19,7 @@ describe('objelity', () => {
     };
     let _keys = deepKeys(obj);
 
-    expect(_keys).toEqual(['a.b.c.0', 'a.b.c.1', 'a.b.c.2', 'a.d', 'e.f.g']);
+    expect(_keys).to.eql(['a.b.c.0', 'a.b.c.1', 'a.b.c.2', 'a.d', 'e.f.g']);
 
     // @ts-ignore
     obj = [
@@ -35,7 +37,7 @@ describe('objelity', () => {
       }
     ];
     _keys = deepKeys(obj);
-    expect(_keys).toEqual(['0.name', '0.age', '1.name', '1.age', '2.name', '2.age']);
+    expect(_keys).to.eql(['0.name', '0.age', '1.name', '1.age', '2.name', '2.age']);
   });
 
   describe('compactObject', () => {
@@ -58,7 +60,7 @@ describe('objelity', () => {
         }
       };
 
-      expect(compactObject(obj)).toEqual({
+      expect(compactObject(obj)).to.eql({
         aaa: {
           bbb: {
             ccc: 1,
@@ -92,7 +94,7 @@ describe('objelity', () => {
       // @ts-ignore
       const newObj = mapObject(obj, (val) => val * 2);
 
-      expect(newObj).toEqual({
+      expect(newObj).to.eql({
         aaa: {
           bbb: {
             ccc: 2,
@@ -130,7 +132,7 @@ describe('objelity', () => {
           return [path, val];
         }
       });
-      expect(newObj).toEqual({
+      expect(newObj).to.eql({
         xxx: {
           ccc: 1,
           ddd: 0
@@ -175,7 +177,7 @@ describe('objelity', () => {
         }
       });
 
-      expect(newObj).toEqual({
+      expect(newObj).to.eql({
         xxx: {
           ccc: 1,
           ddd: 0
@@ -207,7 +209,7 @@ describe('objelity', () => {
       // @ts-ignore
       const newObj = rejectObject(obj, (val) => val % 2 === 0);
 
-      expect(newObj).toEqual({
+      expect(newObj).to.eql({
         aaa: {
           bbb: {
             ccc: 1
@@ -226,7 +228,7 @@ describe('objelity', () => {
         c: 3
       };
 
-      expect(rejectObject(obj, ['b'])).toEqual({
+      expect(rejectObject(obj, ['b'])).to.eql({
         a: 1,
         c: 3
       });
@@ -242,12 +244,12 @@ describe('objelity', () => {
         c: 3
       };
 
-      expect(rejectObject(obj, ['a'])).toEqual({
+      expect(rejectObject(obj, ['a'])).to.eql({
         b: 2,
         c: 3
       });
 
-      expect(rejectObject(obj, ['a.b', 'c'])).toEqual({
+      expect(rejectObject(obj, ['a.b', 'c'])).to.eql({
         a: {
           aa: 11
         },
@@ -274,7 +276,7 @@ describe('objelity', () => {
       // @ts-ignore
       const newObj = filterObject(obj, (val) => val % 2 === 0);
 
-      expect(newObj).toEqual({
+      expect(newObj).to.eql({
         aaa: {
           bbb: {
             ddd: 2
@@ -293,7 +295,7 @@ describe('objelity', () => {
         c: 3
       };
 
-      expect(filterObject(obj, ['a', 'c'])).toEqual({
+      expect(filterObject(obj, ['a', 'c'])).to.eql({
         a: 1,
         c: 3
       });
@@ -309,7 +311,7 @@ describe('objelity', () => {
         c: 3
       };
 
-      expect(filterObject(obj, ['a', 'c'])).toEqual({
+      expect(filterObject(obj, ['a', 'c'])).to.eql({
         a: {
           aa: 11,
           bb: 22
@@ -317,7 +319,7 @@ describe('objelity', () => {
         c: 3
       });
 
-      expect(filterObject(obj, ['a.b', 'c'])).toEqual({
+      expect(filterObject(obj, ['a.b', 'c'])).to.eql({
         a: {
           bb: 22
         },

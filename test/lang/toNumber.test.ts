@@ -1,25 +1,27 @@
+import { expect } from 'chai';
+
 import toNumber from '../../src/lang/toNumber';
 
 describe('toNumber', () => {
   it('converts values to numbers', () => {
-    expect(toNumber('250000')).toEqual(250000.0)
-    expect(toNumber('$250,000')).toEqual(250000.0)
-    expect(toNumber('$250,000.00')).toEqual(250000.0)
-    expect(toNumber('£250,000.00')).toEqual(250000.0)
-    expect(toNumber('  true  ')).toEqual(0)
-    expect(toNumber('true')).toEqual(0)
+    expect(toNumber('250000')).to.eql(250000.0);
+    expect(toNumber('$250,000')).to.eql(250000.0);
+    expect(toNumber('$250,000.00')).to.eql(250000.0);
+    expect(toNumber('£250,000.00')).to.eql(250000.0);
+    expect(toNumber('  true  ')).to.eql(0);
+    expect(toNumber('true')).to.eql(0);
     // @ts-ignore
-    expect(toNumber(true)).toEqual(1)
-    expect(toNumber('  false  ')).toEqual(0)
-    expect(toNumber('false')).toEqual(0)
+    expect(toNumber(true)).to.eql(1);
+    expect(toNumber('  false  ')).to.eql(0);
+    expect(toNumber('false')).to.eql(0);
     // @ts-ignore
-    expect(toNumber(false)).toEqual(0)
-    expect(toNumber('adsklj')).toEqual(0)
+    expect(toNumber(false)).to.eql(0);
+    expect(toNumber('adsklj')).to.eql(0);
     // @ts-ignore
-    expect(toNumber(undefined)).toEqual(0)
+    expect(toNumber(undefined)).to.eql(0);
     // @ts-ignore
-    expect(toNumber({})).toEqual(NaN)
+    expect(toNumber({})).to.eql(NaN);
     // @ts-ignore
-    expect(toNumber([])).toEqual(0)
-  })
-})
+    expect(toNumber([])).to.eql(0);
+  });
+});

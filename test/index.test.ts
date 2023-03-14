@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   omit,
   omitIndex,
@@ -72,7 +74,7 @@ describe('exports', () => {
       trim
     ].forEach((func) => {
       it(`${func.name} returns a function`, () => {
-        expect(typeof func).toEqual('function');
+        expect(typeof func).to.eql('function');
       });
     });
   });

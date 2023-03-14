@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   convertNumericShortcuts,
   currencyFormatter,
@@ -19,7 +21,7 @@ describe('exports', () => {
     stripThousandSeparators
   ].forEach((func) => {
     it(`${func.name} returns a function`, () => {
-      expect(typeof func).toEqual('function');
+      expect(typeof func).to.eql('function');
     });
   });
 });

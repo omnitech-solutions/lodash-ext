@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   isDeepEquals,
   isDeepDifferent,
@@ -29,7 +31,7 @@ describe('exports', () => {
     toNumber
   ].forEach((func) => {
     it(`${func.name} returns a function`, () => {
-      expect(typeof func).toEqual('function');
+      expect(typeof func).to.eql('function');
     });
   });
 });

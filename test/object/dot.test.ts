@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import dot from '../../src/object/dot';
 
 describe('dot', () => {
@@ -10,7 +12,7 @@ describe('dot', () => {
 
     const actual = dot(input);
 
-    expect(actual).toEqual(expected);
+    expect(actual).to.eql(expected);
   });
 
   describe('with underscore as separator', () => {
@@ -23,7 +25,7 @@ describe('dot', () => {
 
       const actual = dot(input, { separator: '_' });
 
-      expect(actual).toEqual(expected);
+      expect(actual).to.eql(expected);
     });
   });
 });

@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import undot from '../../src/object/undot';
 
 describe('undot', () => {
@@ -8,7 +10,7 @@ describe('undot', () => {
         'companyAddress.streetLine1': 'some-street',
         'companyAddress.city': 'some-city'
       })
-    ).toEqual({
+    ).to.eql({
       companyAddress: { city: 'some-city', streetLine1: 'some-street' },
       companyName: 'some-company-name'
     });
@@ -25,7 +27,7 @@ describe('undot', () => {
           },
           { separator: '_' }
         )
-      ).toEqual({
+      ).to.eql({
         companyAddress: { city: 'some-city', streetLine1: 'some-street' },
         companyName: 'some-company-name'
       });

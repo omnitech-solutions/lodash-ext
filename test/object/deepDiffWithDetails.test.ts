@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import { clone, set } from 'lodash';
 import deepDiffWithDetails from '../../src/object/deepDiffWithDetails';
 
@@ -7,14 +9,14 @@ describe('deepDiffWithDetails', () => {
     const b = clone(a);
 
     it('returns empty object when the same', () => {
-      expect(deepDiffWithDetails(a, b)).toEqual({ added: {}, deleted: {}, updated: {} });
-      expect(deepDiffWithDetails(b, a)).toEqual({ added: {}, deleted: {}, updated: {} });
+      expect(deepDiffWithDetails(a, b)).to.eql({ added: {}, deleted: {}, updated: {} });
+      expect(deepDiffWithDetails(b, a)).to.eql({ added: {}, deleted: {}, updated: {} });
     });
 
     it('returns differences when objects have differences', () => {
       set(a, 'two', 4);
 
-      expect(deepDiffWithDetails(a, b)).toEqual({
+      expect(deepDiffWithDetails(a, b)).to.eql({
         added: {},
         deleted: {},
         updated: {
@@ -22,7 +24,7 @@ describe('deepDiffWithDetails', () => {
         }
       });
 
-      expect(deepDiffWithDetails(b, a)).toEqual({
+      expect(deepDiffWithDetails(b, a)).to.eql({
         added: {},
         deleted: {},
         updated: {
@@ -37,15 +39,19 @@ describe('deepDiffWithDetails', () => {
     const b = clone(a);
 
     it('returns empty object when the same', () => {
-      expect(deepDiffWithDetails(a, b)).toEqual({ added: {}, deleted: {}, updated: {} });
-      expect(deepDiffWithDetails(b, a)).toEqual({ added: {}, deleted: {}, updated: {} });
+      expect(deepDiffWithDetails(a, b)).to.eql({ added: {}, deleted: {}, updated: {} });
+      expect(deepDiffWithDetails(b, a)).to.eql({ added: {}, deleted: {}, updated: {} });
     });
 
     it('returns differences when objects have differences', () => {
       set(a, 'vehicle.truck', 4);
 
-      expect(deepDiffWithDetails(a, b)).toEqual({ added: {}, deleted: {}, updated: {} });
-      expect(deepDiffWithDetails(b, a)).toEqual({
+      expect(deepDiffWithDetails(a, b)).to.eql({
+        added: {},
+        deleted: { vehicle: undefined },
+        updated: {}
+      });
+      expect(deepDiffWithDetails(b, a)).to.eql({
         added: {
           vehicle: {
             truck: 4

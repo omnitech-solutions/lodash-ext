@@ -1,10 +1,12 @@
+import { expect } from 'chai';
+
 import toEnum from '../../src/lang/toEnum';
 
 describe('toEnum', () => {
   describe('with only one arguments', () => {
     it('returns one dimensional array filled with index value', () => {
       // @ts-ignore
-      expect(toEnum({ rowCount: 3 })).toEqual([0, 1, 2]);
+      expect(toEnum({ rowCount: 3 })).to.eql([0, 1, 2]);
     });
 
     describe('with callback', () => {
@@ -17,7 +19,7 @@ describe('toEnum', () => {
               callback: (rowIndex) => ({ rowIndex })
             }
           )
-        ).toEqual([{ rowIndex: 0 }, { rowIndex: 1 }, { rowIndex: 2 }]);
+        ).to.eql([{ rowIndex: 0 }, { rowIndex: 1 }, { rowIndex: 2 }]);
       });
     });
   });
@@ -29,7 +31,7 @@ describe('toEnum', () => {
           // @ts-ignore
           { rowCount: 3, columnCount: 2 }
         )
-      ).toEqual([
+      ).to.eql([
         [
           [0, 0, 0],
           [0, 1, 1]
@@ -52,7 +54,7 @@ describe('toEnum', () => {
             // @ts-ignore
             { rowCount: 3, columnCount: 2, emptyColumn: true }
           )
-        ).toEqual([
+        ).to.eql([
           [[], []],
           [[], []],
           [[], []]
