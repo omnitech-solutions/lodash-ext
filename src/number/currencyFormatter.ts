@@ -1,6 +1,5 @@
+import numeral from 'numeral';
 import * as currencies from '../data/currencies';
-
-const numeral = require('numeral');
 
 const currencyFormatter = (value: string, currency = 'USD') => {
   // @ts-ignore

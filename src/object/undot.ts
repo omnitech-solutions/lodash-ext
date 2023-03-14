@@ -1,4 +1,4 @@
-const DOT = require('dot-object');
+import DOT from 'dot-object';
 
 const undot = (dottedObj: object, { separator = '.' } = {}) => {
   if (separator === '.') return DOT.object(dottedObj);

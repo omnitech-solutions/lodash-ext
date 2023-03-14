@@ -1,7 +1,6 @@
-const isArray = require('lodash/isArray');
-const isString = require('lodash/isString');
+import { isArray, isString } from 'lodash';
 
-const trim = (strOrList: string | Array<string>) => {
+const trim = (strOrList: string | Array<string>): string | Array<string> => {
   if (isArray(strOrList)) {
     // @ts-ignore
     return strOrList.map((str: string) => trim(str));

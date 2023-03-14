@@ -1,4 +1,4 @@
-const numeral = require('numeral');
+import numeral from 'numeral';
 
 const currencyNormalizer = (value: string | null | undefined) =>
   value && /[0-9]/.test(value) ? numeral(value).format('0.0[0000]') : '';

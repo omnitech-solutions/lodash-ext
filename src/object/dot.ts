@@ -1,7 +1,8 @@
-const DOT = require('dot-object');
+import DOT from 'dot-object';
 
 const dot = (obj: object, { separator = '.', keepArray = false, useBrackets = true } = {}) => {
   DOT.keepArray = keepArray;
+  // @ts-ignore
   DOT.useBrackets = useBrackets;
 
   const dottedObj = DOT.dot(obj);
