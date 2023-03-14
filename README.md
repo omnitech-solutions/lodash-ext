@@ -259,6 +259,74 @@ toNumber({}) // => NaN
 toNumber([]) // => 0
 ```
 
+### "Number" Methods
+
+#### convertNumericShortcuts
+
+> converts shorthand numeric strings to number
+
+```ts
+convertNumericShortcuts('1k') // => 1e3
+convertNumericShortcuts('1,100k') // => 11e5
+convertNumericShortcuts('1.5m3232.56') // => 15000003232.56
+convertNumericShortcuts('1b') // => 1e9
+convertNumericShortcuts('1t') // => 1e12
+```
+
+#### currencyFormatter
+
+> formats number string to currency format
+
+```ts
+currencyFormatter('84156.68') // => $84,156.68
+currencyFormatter('84156.68', 'GBP') // => '£84,156.68'
+currencyFormatter('84156.105', 'KWD') // => 'KD 84,156.105'
+```
+
+#### currencyNormalizer
+
+> normalizes currency to help ensure compatibility across multiple formats
+
+```ts
+currencyNormalizer('12345') // => '12345.0'
+currencyNormalizer('1,234.5678') // => '1234.5678'
+```
+
+#### currencyToBigDecimal
+
+> converts currency string to bigdecimal
+
+```ts
+currencyToBigDecimal({ currencyAmount: '$1,000,000.56999' }) // => 1000000.56
+```
+
+#### currencyToBigDecimal
+
+> converts currency string to bigdecimal
+
+```ts
+normalizeCurrencyWithPrecision('84156.68') // => '84156.68'
+normalizeCurrencyWithPrecision('84156.689') // => '84156.68'
+```
+
+#### removeUnsupportedCurrencyCharacters
+
+> removes non-numeric values from currency string
+
+```ts
+removeUnsupportedCurrencyCharacters('$ 1,000.50') // => '1000.50'
+removeUnsupportedCurrencyCharacters('KD 20,000.00') // => '20000.00'
+```
+
+#### stripThousandSeparators
+
+> strips thousands separators from currency string
+
+```ts
+stripThousandSeparators('$1,000,000.56999') // => '$1000000.56999'
+```
+
+
 ### "String" Methods
 
 #### capitalize
@@ -293,6 +361,16 @@ titleize('something to say') // => 'Something to Say'
 trim('   ') // => ''
 trim(' abc  ') // => 'abc'
 trim(['', '   ', 'abc']) // => ['', '', 'abc']
+```
+
+### "Number" Methods
+
+#### currencyToBigDecimal
+
+> returns currency string to equivalent big decimal number
+
+```ts
+currencyToBigDecimal({ currencyAmount: '$1,000,000.56999' }) // => 1000000.56
 ```
 
 ### "Object" Methods

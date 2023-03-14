@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.0.2] (2023-03-13)
 - Implemented more `lang` and `object` related functionality
-- 
-- ### [0.0.3] (2023-03-13)
+
+### [0.0.3] (2023-03-13)
 - Implemented `array` related functionality
+
+### [0.0.4] (2023-03-13)
+- Implemented `number` related functionality
